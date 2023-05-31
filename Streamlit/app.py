@@ -11,7 +11,7 @@ from streamlit_option_menu import option_menu
 diabetes_model = pickle.load(open('..\Models\diabetes_model.sav', 'rb'))
 
 heart_model = pickle.load(open('..\Models\heart_model.sav', 'rb'))
-parkinsons_model = pickle.load(open('..\Models\parkinsons_model.sav', 'rb'))
+cancer_model = pickle.load(open('..\Models\cancer_model.sav', 'rb'))
 
 
 # side bar for navigation
@@ -23,7 +23,7 @@ with st.sidebar:
 
                            ['Diabetes Prediction',
                             'Heart Disease Prediction',
-                            'Parkinsons Prediction'],
+                            'Breast cancer Prediction'],
                            icons=['activity', 'heart', 'person'],
                            default_index=0)
 
@@ -151,96 +151,119 @@ if (selected == 'Heart Disease Prediction'):
         st.success(heart_diagnosis)
 
 
-# Parkinsons  Disease prediction
+# Breast cancer  Disease prediction
 
-if (selected == 'Parkinsons Prediction'):
+if (selected == 'Breast Cancer Prediction'):
 
     # page ttiel
 
-    st.title('Parkisnons Disease  Prediction using ML')
+    st.title('Breast Cancer Prediction using ML')
 
     # getting input data from user
 
     col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
-        fo = st.text_input('MDVP-Fo(Hz)')
+        mean_radius = st.text_input('mean radius')
 
     with col2:
-        fhi = st.text_input('MDVP-Fhi(Hz)')
+        mean_texture = st.text_input('mean texture')
 
     with col3:
-        flo = st.text_input('MDVP-Flo(Hz)')
+        mean_perimeter = st.text_input('mean perimeter')
 
     with col4:
-        Jitter_percent = st.text_input('MDVP-Jitter(%)')
+        mean_area = st.text_input('mean area')
     with col5:
-        Jitter_Abs = st.text_input('MDVP-Jitter(Abs)')
+        mean_smoothness = st.text_input('mean smoothness')
     with col1:
-        RAP = st.text_input('MDVP-RAP')
+        mean_compactness = st.text_input('mean compactness')
 
     with col2:
-        PPQ = st.text_input(
-            'MDVP-PPQ')
+        mean_concavity = st.text_input(
+            'mean concavity')
 
     with col3:
-        DDP = st.text_input("Jitter-DDP")
+        mean_concave_points = st.text_input("mean concave points")
 
     with col4:
-        Shimmer = st.text_input('MDVP-Shimmer')
+        mean_symmetry = st.text_input('mean symmetry')
 
     with col5:
-        Shimmer_dB = st.text_input('MDVP-Shimmer_dB ')
+        mean_fractal_dimension = st.text_input('mean fractal dimension')
     with col1:
 
-        APQ3 = st.text_input('Shimmer-APQ3')
+        radius_error = st.text_input('radius error')
     with col2:
 
-        APQ5 = st.text_input('Shimmer-APQ5')
+        texture_error = st.text_input('texture error')
 
     with col3:
 
-        APQ = st.text_input('MDVP-APQ')
+        perimeter_error = st.text_input('perimeter error')
     with col4:
-        DDA = st.text_input('Shimmer-DDA')
+        area_error = st.text_input('area error')
 
     with col5:
-        NHR = st.text_input('NHR')
+        smoothness_error = st.text_input('smoothness error')
 
     with col1:
-        HNR = st.text_input('HNR')
+        compactness_error = st.text_input('compactness error')
 
     with col2:
-        RPDE = st.text_input('RPDE')
+        concavity_error = st.text_input('concavity error')
 
     with col3:
-        DFA = st.text_input('DFA')
+        concave_points_error = st.text_input('concave points error')
 
     with col4:
-        spread1 = st.text_input('spread1')
+        symmetry_error = st.text_input('symmetry error')
 
     with col5:
-        spread2 = st.text_input('spread2')
+        fractal_dimension_error = st.text_input('fractal dimension error')
 
     with col1:
-        D2 = st.text_input('D2')
+        worst_radius = st.text_input('worst radius')
 
     with col2:
-        PPE = st.text_input('PPE')
+        worst_texture = st.text_input('worst texture')
+    with col3:
+        worst_perimeter = st.text_input('worst perimeter')
+    with col4:
+        worst_area = st.text_input('worst area')
+    with col5:
+        worst_smoothness = st.text_input('worst smoothness')
+    with col1:
+        worst_compactness = st.text_input('worst compactness')
+    with col2:
+        worst_concavity = st.text_input('worst concavity')
+
+    with col3:
+        worst_concave_points = st.text_input('worst concave points')
+    with col4:
+        worst_symmtery = st.text_input('worst symmetry')
+    with col5:
+        worst_fractal_dimension = st.text_input('worst fractal dimension')
 
     # code for prediction
 
-    parkinsons_diagnosis = ''
+    cancer_diagnosis = ''
 
     if st.button('Parkinsons Diagnosis  Test Result'):
 
-        parkinsons_prediction = parkinsons_model.predict(
-            [[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]])
+        cancer_prediction = cancer_model.predict(
+            [[mean_radius, mean_texture, mean_perimeter, mean_area, mean_smoothness, mean_compactness, mean_concavity, mean_concave_points, mean_symmetry, mean_fractal_dimension, radius_error,
+              texture_error, perimeter_error, area_error, smoothness_error,
+              concavity_error, compactness_error, concavity_error, concave_points_error,
+              symmetry_error, fractal_dimension_error, worst_radius,
+              worst_texture, worst_perimeter, worst_area, worst_smoothness,
+              worst_compactness, worst_concavity, worst_concave_points,
+              worst_symmtery, worst_fractal_dimension]])
 
-        if (parkinsons_prediction[0] == 1):
-            parkisnons_diagnosis = 'The person is having Parkisnons Disease'
+        if (cancer_prediction[0] == 1):
+            cancer_diagnosis = 'The person is Benign'
 
         else:
-            parkisnons_diagnosis = ' the person does not have any Parkinsons disease'
+            cancer_diagnosis = ' the person is Malignant'
 
-        st.success(parkinsons_diagnosis)
+        st.success(cancer_diagnosis)
