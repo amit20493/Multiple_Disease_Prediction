@@ -153,7 +153,7 @@ if (selected == 'Heart Disease Prediction'):
 
 # Breast cancer  Disease prediction
 
-if (selected == 'Breast Cancer Prediction'):
+if (selected == 'Breast cancer Prediction'):
 
     # page ttiel
 
@@ -252,13 +252,12 @@ if (selected == 'Breast Cancer Prediction'):
     if st.button('Parkinsons Diagnosis  Test Result'):
 
         cancer_prediction = cancer_model.predict(
-            [[mean_radius, mean_texture, mean_perimeter, mean_area, mean_smoothness, mean_compactness, mean_concavity, mean_concave_points, mean_symmetry, mean_fractal_dimension, radius_error,
-              texture_error, perimeter_error, area_error, smoothness_error,
-              concavity_error, compactness_error, concavity_error, concave_points_error,
-              symmetry_error, fractal_dimension_error, worst_radius,
-              worst_texture, worst_perimeter, worst_area, worst_smoothness,
-              worst_compactness, worst_concavity, worst_concave_points,
-              worst_symmtery, worst_fractal_dimension]])
+            [[mean_radius, mean_texture, mean_perimeter, mean_area, mean_smoothness,
+              mean_compactness, mean_concavity, mean_concave_points, mean_symmetry, mean_fractal_dimension,
+              radius_error, texture_error, perimeter_error, area_error, smoothness_error,
+              compactness_error, concavity_error, concave_points_error, symmetry_error, fractal_dimension_error,
+              worst_radius, worst_texture, worst_perimeter, worst_area, worst_smoothness, worst_compactness,
+              worst_concavity, worst_concave_points, worst_symmtery, worst_fractal_dimension]])
 
         if (cancer_prediction[0] == 1):
             cancer_diagnosis = 'The person is Benign'
