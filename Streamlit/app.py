@@ -1,4 +1,16 @@
-pip install streamlit-option-menu
+import subprocess
+import sys
+
+# Function to install a package
+def install(package):
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
+
+# Try to import the package
+try:
+    from streamlit_option_menu import option_menu
+except ImportError:
+    install('streamlit-option-menu')
+    from streamlit_option_menu import option_menu
  
 import pickle
 
