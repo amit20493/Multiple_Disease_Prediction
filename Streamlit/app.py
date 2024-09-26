@@ -1,17 +1,3 @@
-import subprocess
-import sys
-
-# Function to install a package
-def install(package):
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
-
-# Try to import the package
-try:
-    from streamlit_option_menu import option_menu
-except ImportError:
-    install('streamlit-option-menu')
-    from streamlit_option_menu import option_menu
- 
 import pickle
 
 import streamlit as st
@@ -22,10 +8,10 @@ from streamlit_option_menu import option_menu
 # loading saved models
 
 
-diabetes_model = pickle.load(open('..\Models\diabetes_model.sav', 'rb'))
+diabetes_model = pickle.load(open('/workspaces/Multiple_Disease_Prediction/Models/diabetes_model.sav', 'rb'))
 
-heart_model = pickle.load(open('..\Models\heart_model.sav', 'rb'))
-cancer_model = pickle.load(open('..\Models\cancer_model.sav', 'rb'))
+heart_model = pickle.load(open('/workspaces/Multiple_Disease_Prediction/Models/heart_model.sav', 'rb'))
+cancer_model = pickle.load(open('/workspaces/Multiple_Disease_Prediction/Models/cancer_model.sav', 'rb'))
 
 
 # side bar for navigation
